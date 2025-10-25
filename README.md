@@ -1,34 +1,39 @@
-# Fashion MNIST Classifier
+## Project Description
 
-A simple project to classify images from the Fashion MNIST dataset using a neural network.
+The **Fashion MNIST Classifier** is a machine learning project that classifies 28x28 grayscale images of clothing from the Fashion MNIST dataset into 10 categories using a TensorFlow neural network. The project is designed for console-only output, featuring modular code for data loading, model building, training, evaluation, and prediction. It prints a confusion matrix in text format to evaluate performance, saves the trained model, and allows users to make predictions on test images by entering an index.
 
 ## Project Structure
-- `data/`: Stores the dataset in `.pkl` format.
-- `models/`: Stores the trained model in `.pkl` format.
-- `src/`: Contains Python modules for data loading, model definition, training, and utilities.
-- `main.py`: Main script to run the project.
-- `requirements.txt`: Lists required dependencies.
+
+```
+fashion_mnist_classifier/
+├── data/
+│   └── fashion_mnist_data.pkl  # Pickled dataset (optional, for caching)
+├── models/
+│   └── fashion_mnist_model.pkl  # Trained model
+├── src/
+│   ├── __init__.py
+│   ├── data_loader.py      # Data loading and preprocessing
+│   ├── model.py           # Model definition
+│   ├── train.py           # Training and evaluation logic
+│   ├── utils.py           # Utility functions for console-based metrics
+│   └── predict.py         # Prediction on user-provided data
+├── main.py                # Main script to run the project
+├── requirements.txt       # Project dependencies
+└── README.md             # Project documentation
+```
 
 ## Setup
-1. Create a virtual environment:
+
+1. **Create a virtual environment** (recommended with Anaconda):
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   conda create -n fashion_mnist python=3.8
+   conda activate fashion_mnist
    ```
-2. Install dependencies:
+2. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
-3. Run the project:
+3. **Run the project**:
    ```bash
    python main.py
    ```
-
-## Requirements
-- Python 3.8+
-- See `requirements.txt` for package dependencies.
-
-## Output
-- The script trains a neural network on the Fashion MNIST dataset.
-- Outputs training progress, test accuracy, and a confusion matrix plot.
-- Saves the trained model to `models/fashion_mnist_model.pkl`.
