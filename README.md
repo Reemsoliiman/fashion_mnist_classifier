@@ -6,10 +6,8 @@ A neural network classifier for the Fashion MNIST dataset using TensorFlow/Keras
 
 ```
 fashion_mnist_classifier/
-├── data/
-│   └── fashion_mnist_data.pkl  # Pickled dataset (optional, for caching)
 ├── models/
-│   └── fashion_mnist_model.h5  # Trained model
+│   └── fashion_mnist_model.h5  # Trained model (generated after training)
 ├── src/
 │   ├── data_loader.py    # Data loading and preprocessing
 │   ├── model.py          # Model architecture and save/load functions
@@ -18,6 +16,7 @@ fashion_mnist_classifier/
 │   └── utils.py          # Utility functions (e.g., confusion matrix)
 ├── main.py               # Main execution script
 ├── requirements.txt      # Python dependencies
+├── .gitignore            # Git ignore rules
 └── README.md             # This file
 ```
 
@@ -29,13 +28,7 @@ fashion_mnist_classifier/
    cd fashion_mnist_classifier
    ```
 
-2. **Create a virtual environment:**
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   ```
-
-3. **Install dependencies:**
+2. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
@@ -48,42 +41,22 @@ python main.py
 ```
 
 This will:
-- Download the Fashion MNIST dataset (first run only)
+- Automatically download the Fashion MNIST dataset (first run only, downloaded by TensorFlow/Keras)
 - Preprocess and normalize the data
 - Train a neural network for 10 epochs
+- Evaluate the model on the test set
 - Save the trained model to `models/fashion_mnist_model.h5`
 - Display test accuracy and a text-based confusion matrix
 - Show predictions for test image indices 0, 1, and 2
-- Prompt for interactive predictions on test images (enter an index from 0 to 9999 or 'q' to quit)
+- Enter interactive mode where you can test predictions on any test image (enter an index from 0 to 9999 or 'q' to quit)
 
 ## Dataset
 
 The Fashion MNIST dataset contains 70,000 grayscale images (28x28 pixels) in 10 categories:
-- T-shirt/top, Trouser, Pullover, Dress, Coat, Sandal, Shirt, Sneaker, Bag, Ankle boot
+- **T-shirt/top** - **Trouser** - **Pullover** - **Dress** - **Coat**
+- **Sandal** - **Shirt** - **Sneaker** - **Bag** - **Ankle boot**
 
-The dataset (~30MB) is automatically downloaded by TensorFlow on the first run and optionally cached as a pickle file in the `data/` directory.
+**Training set:** 60,000 images  
+**Test set:** 10,000 images
 
-## Model Architecture
-
-- **Input**: 28x28 grayscale images
-- **Flatten layer**: Converts 2D image to 1D vector
-- **Dense layer**: 100 neurons with ReLU activation
-- **Output layer**: 10 neurons with Softmax activation
-- **Optimizer**: Adam
-- **Loss function**: Sparse categorical crossentropy
-- **Metric**: Accuracy
-
-## Notes
-
-- The project uses console-only output for simplicity.
-- Data (`data/fashion_mnist_data.pkl`) and model files (`models/fashion_mnist_model.h5`) are excluded from Git via `.gitignore`.
-- The dataset is automatically downloaded by TensorFlow; no manual download is required.
-- The model is saved in HDF5 format (`.h5`) for compatibility with Keras.
-- TensorFlow oneDNN optimizations are disabled to suppress warnings (`TF_ENABLE_ONEDNN_OPTS=0`).
-
-## Requirements
-
-Key dependencies (listed in `requirements.txt`):
-- TensorFlow
-- NumPy
-- Scikit-learn
+The dataset is automatically downloaded by TensorFlow/Keras on the first run and cached in your system's Keras data
